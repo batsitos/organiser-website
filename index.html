@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fang's Organiser</title>
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: #ffffff;
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+        }
+        h2 {
+            margin-top: 0.5em;
+            margin-bottom: 1em;
+        }
+        form {
+            background-color: #2e2e2e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            max-width: 400px;
+            width: 100%;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5em;
+        }
+        input[type="text"], input[type="number"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 1em;
+            border: none;
+            border-radius: 5px;
+            background-color: #444444;
+            color: #ffffff;
+        }
+        button {
+            background-color: #444444;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #666666;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #3e3e3e;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+    <script>
+        function organise() {
+            let item = document.getElementById('item').value;
+            let size = document.getElementById('size').value;
+            let use = document.getElementById('use').value;
+            let sections = document.getElementById('sections').value;
+            let sectionSizes = document.getElementById('sectionSizes').value;
+            let objects = document.getElementById('objects').value;
+
+            let result = "Organising " + item + ":\n\n";
+            result += "Size: " + size + "\n";
+            if (use) {
+                result += "Use: " + use + "\n";
+            }
+            if (sections) {
+                result += "Sections: " + sections + "\n";
+                result += "Section Sizes: " + sectionSizes + "\n";
+            }
+            if (objects) {
+                result += "Objects to include: " + objects + "\n";
+            }
+
+            document.getElementById('result').innerText = result;
+        }
+    </script>
+</head>
+<body>
+    <h1>Fang's Organiser</h1>
+    <h2>"The Organiser": Your AI Guide to Order</h2>
+    <form onsubmit="event.preventDefault(); organise();">
+        <label for="item">What are you organising?</label>
+        <input type="text" id="item" required>
+
+        <label for="size">How big is it? (e.g., dimensions, volume)</label>
+        <input type="text" id="size" required>
+
+        <label for="use">What are you using it for? (Optional)</label>
+        <input type="text" id="use">
+
+        <label for="sections">Are there sections? How many? (Optional)</label>
+        <input type="number" id="sections">
+
+        <label for="sectionSizes">How big are the sections? (Optional)</label>
+        <input type="text" id="sectionSizes">
+
+        <label for="objects">Objects to include (Optional)</label>
+        <textarea id="objects" rows="4"></textarea>
+
+        <button type="submit">Organise</button>
+    </form>
+    <div id="result" class="result"></div>
+</body>
+</html>
